@@ -1,0 +1,10 @@
+---
+title: "Publications"
+output: 
+  html_document:
+bibliography: My_publications.bib
+site: page
+nocite: |
+      @Martinez-Baron2018, @Orjuela2016
+---
+
