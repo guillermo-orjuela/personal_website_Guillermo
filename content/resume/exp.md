@@ -9,7 +9,7 @@ headless: true
 # Order that this section appears on the page.
 weight: 10
 
-title: Teaching Experience
+title: Teaching & Research Experience
 subtitle: 4 years
 
 # Date format for experience
@@ -49,6 +49,20 @@ experience:
     location: Bogotá
     date_start: '2014-09-01'
     date_end: '2014-12-01'
+
+  - title: Reviewer of Research Proposals.
+    company: Corporación Universitaria del Huila - Corhuila.
+    company_url: 'https://www.corhuila.edu.co/seccion/inicio.html'
+    location: Remote.
+    date_start: '2018-06-01'
+    date_end: '2018-07-01'
+
+  - title: Socio-economic Characterization of rural population.
+    company: Universidad de Cundinamarca.
+    company_url: 'https://www.ucundinamarca.edu.co/'
+    location: Facatativá, Cundinamarca.
+    date_start: '2017-01-01'
+    date_end: '2017-03-01'
     
 ---
 
