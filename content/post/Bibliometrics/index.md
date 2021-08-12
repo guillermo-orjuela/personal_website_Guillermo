@@ -9,7 +9,7 @@ featured: false
 image:
   caption: ""
   focal_point: ""
-  placement: 2
+  placement: 3
   preview_only: false
 lastmod: "2020-12-13"
 links:

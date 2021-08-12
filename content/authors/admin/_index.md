@@ -1,12 +1,12 @@
 ---
-bio: I'm a researcher on ecoinnovation and environmental economics.
+bio: I'm a researcher on ecoinnovation and .
 education:
   courses:
-  - course: PhD Student in Economics
-    institution: Javeriana University & UAB
+  - course: PhD Candidate in Economic Sciences
+    institution: Javeriana University - Cali & Universitat Autònoma de Barcelona - UAB
     year: 2017 - In progress
   - course: MSc in Economics and Management
-    institution: Javeriana University
+    institution: Javeriana University - Cali
     year: 2019
   - course: MSc in Rural Development
     institution: Javeriana University
@@ -17,7 +17,7 @@ education:
 interests:
 - Eco-innovation.
 - Bibliometrics.
-- Climate change policies.
+- Environmental Economics.
 - Teaching.
 - Data Visualization in R.
 
@@ -44,7 +44,7 @@ superuser: true
 title: Guillermo Orjuela Ramirez
 ---
 
-I am a researcher on innovation and environmental economics. I have a Msc in economics, a Msc in Rural Developmet and I am doing my PhD in Economics. My experience in research and consulting covers science, technology and innovation field, climate change policies and agrifood systems and policy development. I am passionate for creating novel ways of applying my knowledge.
+I am a researcher on innovation and environmental economics. I hold a Msc in Economics, a Msc in Rural Developmet and I am doing my PhD in Economic Sciences. My experience in research and consulting covers science, technology and innovation field, climate change policies and agrifood systems and policy development. I am passionate for creating novel ways of applying my knowledge.
 
 I have been teaching environmental economics, research methods, and economic sciences over 4 years, I love to teach bibliometrics in R. 
 
