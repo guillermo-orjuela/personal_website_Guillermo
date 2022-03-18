@@ -1,5 +1,5 @@
 ---
-bio: I'm a researcher on ecoinnovation and .
+bio:
 education:
   courses:
   - course: PhD Candidate in Economic Sciences
@@ -24,7 +24,7 @@ interests:
 organizations:
 - name:
   url:
-role: Researcher and Professor on Innovation and Environmental Economics.
+role: Researcher and Professor.
 social:
 - icon: envelope
   icon_pack: fas
