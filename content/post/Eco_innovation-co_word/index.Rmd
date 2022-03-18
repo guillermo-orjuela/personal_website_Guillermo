@@ -1,0 +1,254 @@
+---
+authors:
+- admin
+categories:
+- Literature Review
+- Bibliometrics
+date: "2020-08-11"
+draft: false
+featured: false
+image:
+  caption: ""
+  focal_point: ""
+  placement: 1
+  preview_only: false
+lastmod: "2020-08-11"
+links:
+- icon: fas fab-book
+  icon_pack: fas fa-book
+  name: Co-word analysis
+projects: []
+subtitle: ""
+summary: "Complementary material of a literature review paper"
+tags:
+- Bibliometrics
+- Conceptual Structure
+- Science Mapping
+- Co-word
+title: "Co-word analysis of Eco-innovation Field."
+---
+
+```{r, echo=F, warning=F, message=F, results='hide'}
+library(bibliometrix)
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(rio)
+library(plotly)
+library(DT)
+setwd("C:/Users/User/Google Drive/personal_website_Guillermo/personal_website_Guillermo/content/post/Eco_innovation-co_word")
+df1 <- rio::import("t_2000-2016.xlsx")
+df2 <- rio::import("t_2017-2019.xlsx")
+df3 <- rio::import("t_2020-2021.xlsx")
+
+dt1 <- rio::import("tm1_2000-2016.xlsx") %>% select(Occurrences, Words, Cluster, Cluster_Label)
+dt2 <- rio::import("tm1_2017-2019.csv") %>% select(Occurrences, Words, Cluster, Cluster_Label)
+dt3 <- rio::import("tm1_2020-2021.csv") %>% select(Occurrences, Words, Cluster, Cluster_Label)
+```
+
+# Co-word 2000-2016
+
+```{r, echo=F, warning=F, message=F, eval=T}
+t1 <- thematicMap(df1,
+                 field = "DE",
+                 n = 150, # It indicates the number of terms to include in the analysis
+                 minfreq = 20, # Minimum frequency (per 1000) of a cluster. Number between (0, 1000).
+                 ngrams = NULL,
+                 stemming = F,
+                 size = 0.5, # Size of the cluster circles and is a number in the range (0.01,1).
+                 n.labels = 4, # labels associated to each cluster
+                 repel = F
+)
+t5 <- t1[["clusters"]]
+meandens = mean(t5$rdensity)
+meancentr = mean(t5$rcentrality)
+rangex = max(c(meancentr - min(t5$rcentrality), max(t5$rcentrality) - meancentr))
+rangey = max(c(meandens - min(t5$rdensity), max(t5$rdensity) - meandens))
+ylimits = c(meandens - rangey - 0.5, meandens + rangey + 0.5)
+xlimits = c(meancentr - rangex - 0.5, meancentr + rangex + 0.5)
+t5$size = log(as.numeric(t5$freq))
+annotations <- data.frame(xpos = sort(c(xlimits, xlimits)), 
+    ypos = c(ylimits, ylimits), words = c("Emerging or Declining Themes", 
+      "Highly Developed and Isolated Themes", "Basic and Transversal Themes ", "Motor Themes"), 
+    hjustvar = c(0, 0, 1, 1), vjustvar = c(0, 1, 0, 1))
+
+t5$name <- str_replace_all(t5$name, pattern = c("sustainable"), "sustainability")
+
+g1 <- ggplot(t5, aes(x = rcentrality, y = rdensity)) +
+  geom_hline(yintercept = meandens, linetype = 2, color = adjustcolor("black", alpha.f = 0.7)) +
+  geom_vline(xintercept = meancentr, linetype = 2, color = adjustcolor("black", alpha.f = 0.7)) +
+  geom_point(group = "NA", aes(size = freq), shape = 20, col = adjustcolor("#159596", alpha.f = 0.5)) +
+  theme(legend.position = "none") + 
+  scale_size(range = c(5*(min(t5$size)), 5*(max(t5$size)))) +
+  labs(x = "Relevance degree\n(Centrality)", y = "Development degree\n(Density)") + 
+  xlim(xlimits) + 
+  ylim(ylimits) +
+  geom_text(aes(label=name), hjust=+0.5, vjust=+0.5) + 
+  annotate("text", x = annotations$xpos, y = annotations$ypos,
+           hjust = annotations$hjustvar, vjust = annotations$vjustvar, 
+           label = annotations$words, 
+           color = adjustcolor("gray20", alpha.f = 0.5), 
+           size = 3) + 
+  theme_minimal() + 
+  theme(panel.border = element_blank(),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.grid.major.y = element_blank(),
+        legend.position = "none",
+        axis.text.x = element_blank(), 
+        axis.ticks.x = element_blank(),
+        axis.title.x = element_text(color = "gray30"),
+        axis.text.y = element_blank(), 
+        axis.ticks.y = element_blank(),
+        axis.title.y = element_text(color = "gray30"))
+
+ggplotly(g1) %>% 
+  layout(xaxis = list(autorange = TRUE),
+         yaxis = list(autorange = TRUE))
+```
+
+# Terms 2000-2016
+
+```{r, message=FALSE, warning=FALSE, include=FALSE}
+p1 <- dt1 %>% DT::datatable(rownames = F,
+                  options = list(pageLength = 10,
+                                 autoWidth = T), 
+                  colnames = c("Occurrences", "Words", "Cluster", "Cluster_Label"), caption = "Clusters and Occurrences of words: 2000-2016")
+p1
+```
+```{r, message=FALSE, warning=FALSE, include=FALSE}
+htmlwidgets::saveWidget(p1, file = "p1.html", selfcontained = T)
+```
+
+<iframe seamless src="C:/Users/User/Google Drive/personal_website_Guillermo/personal_website_Guillermo/content/post/Eco_innovation-co_word/p1/index.html" width="100%" height="300"></iframe>
+
+# Co-word 2017-2019
+
+```{r, echo=F, warning=F, message=F, eval=T}
+t2 <- thematicMap(df2,
+                 field = "DE",
+                 n = 150, # It indicates the number of terms to include in the analysis
+                 minfreq = 20, # Minimum frequency (per 1000) of a cluster. Number between (0, 1000).
+                 ngrams = NULL,
+                 stemming = F,
+                 size = 0.5, # Size of the cluster circles and is a number in the range (0.01,1).
+                 n.labels = 4, # labels associated to each cluster
+                 repel = F
+)
+t5 <- t2[["clusters"]]
+meandens = mean(t5$rdensity)
+meancentr = mean(t5$rcentrality)
+rangex = max(c(meancentr - min(t5$rcentrality), max(t5$rcentrality) - meancentr))
+rangey = max(c(meandens - min(t5$rdensity), max(t5$rdensity) - meandens))
+ylimits = c(meandens - rangey - 0.5, meandens + rangey + 0.5)
+xlimits = c(meancentr - rangex - 0.5, meancentr + rangex + 0.5)
+t5$size = log(as.numeric(t5$freq))
+annotations <- data.frame(xpos = sort(c(xlimits, xlimits)), 
+    ypos = c(ylimits, ylimits), words = c("Emerging or Declining Themes", 
+      "Highly Developed and Isolated Themes", "Basic and Transversal Themes ", "Motor Themes"), 
+    hjustvar = c(0, 0, 1, 1), vjustvar = c(0, 1, 0, 1))
+
+g2 <- ggplot(t5, aes(x = rcentrality, y = rdensity)) +
+  geom_hline(yintercept = meandens, linetype = 2, color = adjustcolor("black", alpha.f = 0.7)) +
+  geom_vline(xintercept = meancentr, linetype = 2, color = adjustcolor("black", alpha.f = 0.7)) +
+  geom_point(group = "NA", aes(size = freq), shape = 20, col = adjustcolor("#159596", alpha.f = 0.5)) +
+  theme(legend.position = "none") + 
+  scale_size(range = c(5*(min(t5$size)), 5*(max(t5$size)))) +
+  labs(x = "Relevance degree\n(Centrality)", y = "Development degree\n(Density)") + 
+  xlim(xlimits) + 
+  ylim(ylimits) +
+  geom_text(aes(label=name), hjust=+0.5, vjust=+0.5) + 
+  annotate("text", x = annotations$xpos, y = annotations$ypos,
+           hjust = annotations$hjustvar, vjust = annotations$vjustvar, 
+           label = annotations$words, 
+           color = adjustcolor("gray20", alpha.f = 0.5), 
+           size = 3) + 
+  theme_minimal() + 
+  theme(panel.border = element_blank(),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.grid.major.y = element_blank(),
+        legend.position = "none",
+        axis.text.x = element_blank(), 
+        axis.ticks.x = element_blank(),
+        axis.title.x = element_text(color = "gray30"),
+        axis.text.y = element_blank(), 
+        axis.ticks.y = element_blank(),
+        axis.title.y = element_text(color = "gray30"))
+
+ggplotly(g2) %>% layout(showlegend=F)
+```
+
+# Terms 2000-2016
+
+```{r, echo=F, warning=F, message=F, eval=T}
+datatable((dt2), colnames = c("Occurrences", "Words", "Cluster", "Cluster Label"), caption = "Clusters and Occurrences of words: 2000-2016")
+
+```
+
+# Co-word 2019-2021
+
+```{r, echo=F, warning=F, message=F, eval=T}
+t3 <- thematicMap(df3,
+                 field = "DE",
+                 n = 150, # It indicates the number of terms to include in the analysis
+                 minfreq = 20, # Minimum frequency (per 1000) of a cluster. Number between (0, 1000).
+                 ngrams = NULL,
+                 stemming = F,
+                 size = 0.5, # Size of the cluster circles and is a number in the range (0.01,1).
+                 n.labels = 4, # labels associated to each cluster
+                 repel = F
+)
+t5 <- t3[["clusters"]]
+meandens = mean(t5$rdensity)
+meancentr = mean(t5$rcentrality)
+rangex = max(c(meancentr - min(t5$rcentrality), max(t5$rcentrality) - meancentr))
+rangey = max(c(meandens - min(t5$rdensity), max(t5$rdensity) - meandens))
+ylimits = c(meandens - rangey - 0.5, meandens + rangey + 0.5)
+xlimits = c(meancentr - rangex - 0.5, meancentr + rangex + 0.5)
+t5$size = log(as.numeric(t5$freq))
+annotations <- data.frame(xpos = sort(c(xlimits, xlimits)), 
+    ypos = c(ylimits, ylimits), words = c("Emerging or Declining Themes", 
+      "Highly Developed and Isolated Themes", "Basic and Transversal Themes ", "Motor Themes"), 
+    hjustvar = c(0, 0, 1, 1), vjustvar = c(0, 1, 0, 1))
+
+g3 <- ggplot(t5, aes(x = rcentrality, y = rdensity)) +
+  geom_hline(yintercept = meandens, linetype = 2, color = adjustcolor("black", alpha.f = 0.7)) +
+  geom_vline(xintercept = meancentr, linetype = 2, color = adjustcolor("black", alpha.f = 0.7)) +
+  geom_point(group = "NA", aes(size = freq), shape = 20, col = adjustcolor("#159596", alpha.f = 0.5)) +
+  theme(legend.position = "none") + 
+  scale_size(range = c(5*(min(t5$size)), 5*(max(t5$size)))) +
+  labs(x = "Relevance degree\n(Centrality)", y = "Development degree\n(Density)") + 
+  xlim(xlimits) + 
+  ylim(ylimits) +
+  geom_text(aes(label=name), hjust=+0.5, vjust=+0.5) + 
+  annotate("text", x = annotations$xpos, y = annotations$ypos,
+           hjust = annotations$hjustvar, vjust = annotations$vjustvar, 
+           label = annotations$words, 
+           color = adjustcolor("gray20", alpha.f = 0.5), 
+           size = 3) + 
+  theme_minimal() + 
+  theme(panel.border = element_blank(),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.grid.major.y = element_blank(),
+        legend.position = "none",
+        axis.text.x = element_blank(), 
+        axis.ticks.x = element_blank(),
+        axis.title.x = element_text(color = "gray30"),
+        axis.text.y = element_blank(), 
+        axis.ticks.y = element_blank(),
+        axis.title.y = element_text(color = "gray30"))
+
+ggplotly(g3) %>% layout(showlegend=F)
+```
+
+# Terms 2000-2016
+
+```{r, echo=F, warning=F, message=F, eval=T}
+datatable((dt3), colnames = c("Occurrences", "Words", "Cluster", "Cluster Label"), caption = "Clusters and Occurrences of words: 2000-2016")
+
+```
