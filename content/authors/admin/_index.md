@@ -46,6 +46,6 @@ title: Guillermo Orjuela Ramirez
 
 I am a researcher on innovation and environmental management. My research focuses on eco-innovation in organizations and its relationship with the natural environment. I am passionate about bibliometrics and I also study the ways of applying bibliometric techniques in my research.
 
-I hold a Msc in Economics Science and Management, a Msc in Rural Developmet and I am doing my PhD in Economic Sciences. My experience in research and consulting covers science, technology and innovation field, climate change policies and agrifood systems and policy development. I am passionate for creating novel ways of applying my knowledge.
+I hold a Msc in Economics Science and Management, a Msc in Rural Developmet and I am doing a PhD in Economic Sciences. My experience in research and consulting covers science, technology and innovation field, climate change policies and agrifood systems and policy development. I am passionate for creating novel ways of applying my knowledge.
 
 {{< icon name="download" pack="fas" >}} Download my cv in {{< staticref "media/CV_guillermo_orjuela_ramirez.pdf" "newtab" >}}Spanish{{< /staticref >}}.

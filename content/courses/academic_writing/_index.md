@@ -8,6 +8,7 @@ weight: 10
 ---
 
 {{< figure src="writing_1.jpg" >}}
+
 Foto: [SUNBEAM PHOTOGRAPHY](https://unsplash.com/@sstoppo)
 
 ## Descripción general del seminario
