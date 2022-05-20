@@ -23,3 +23,7 @@ Estructura de la oración y radiografía textual.
 ## Video introductorio
 
 {{< youtube ncG2p1nfqSo >}}
+
+## Presentaciones
+
+{{< staticref "media/ppt_academic-writing/Sesion_2.pdf" "newtab" >}} {{< icon name="download" pack="fas" >}}Sesion 2{{< /staticref >}}

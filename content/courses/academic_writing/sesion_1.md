@@ -26,3 +26,7 @@ Introducción al seminario y prácticas de escritura.
 ## ¿Qué tanto nos comunicamos de manera escrita en nuestro día a día?
 
 ## Rituales para comenzar a escribir
+
+## Presentaciones
+
+{{< staticref "media/ppt_academic-writing/Sesion_1.pdf" "newtab" >}} {{< icon name="download" pack="fas" >}}Sesion 1{{< /staticref >}}

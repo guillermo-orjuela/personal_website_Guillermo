@@ -9,7 +9,7 @@ weight: 10
 
 {{< figure src="writing_1.jpg" >}}
 
-Foto: [SUNBEAM PHOTOGRAPHY](https://unsplash.com/@sstoppo)
+Foto: [Daniel Álvasd](https://unsplash.com/es/@danielalvasd)
 
 ## Descripción general del seminario
 
